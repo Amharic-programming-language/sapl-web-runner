@@ -10,8 +10,9 @@ COPY . .
 # Install deps
 RUN npm install
 
-# Make start.sh executable
-RUN chmod +x ./start.sh
+
+RUN chmod +x /app/sapl
+
 
 EXPOSE 5000
 

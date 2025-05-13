@@ -5,7 +5,7 @@ const { v4: uuid } = require("uuid");
 
 exports.runSaplCode = (code, input = "") => {
   return new Promise((resolve, reject) => {
-    const tempFilePath = path.join(__dirname, `temp_${uuid()}.sapl`);
+    const tempFilePath = `/tmp/temp_${uuid()}.sapl`;
     fs.writeFileSync(tempFilePath, code, "utf-8");
 
     const exePath = path.join(__dirname, "sapl");
