@@ -8,8 +8,8 @@ exports.runSaplCode = (code, input = "") => {
     const tempFilePath = path.join(__dirname, `temp_${uuid()}.sapl`);
     fs.writeFileSync(tempFilePath, code, "utf-8");
 
-    const exePath = path.join(__dirname, "sapl.exe");
-    const proc = spawn("wine", [exePath, tempFilePath], { timeout: 5000 });
+    const exePath = path.join(__dirname, "sapl");
+    const proc = spawn(exePath, [tempFilePath], { timeout: 5000 });
 
     let stdout = "";
     let stderr = "";
