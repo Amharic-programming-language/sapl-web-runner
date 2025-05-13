@@ -1,9 +1,15 @@
-FROM node:alpine3.21
+FROM node:16-buster
 
-# Install Wine (for running .exe)
-RUN dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get install -y wine64 wine32
+# Install Wine and dependencies
+RUN apt-get update && apt-get install -y \
+    wine64 \
+    xvfb \
+    fontconfig \
+    winetricks \
+    ttf-mscorefonts-installer \
+    curl \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
@@ -11,7 +17,7 @@ WORKDIR /app
 # Copy files
 COPY . .
 
-# Install deps
+# Install npm dependencies
 RUN npm install
 
 # Make start.sh executable
