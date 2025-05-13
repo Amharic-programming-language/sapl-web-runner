@@ -9,9 +9,7 @@ exports.runSaplCode = (code, input = "") => {
     fs.writeFileSync(tempFilePath, code, "utf-8");
 
     const exePath = path.join(__dirname, "sapl.exe");
-    const proc = spawn(exePath, [tempFilePath], {
-      timeout: 5000, // 5 sec timeout
-    });
+    const proc = spawn("wine", [exePath, tempFilePath], { timeout: 5000 });
 
     let stdout = "";
     let stderr = "";
